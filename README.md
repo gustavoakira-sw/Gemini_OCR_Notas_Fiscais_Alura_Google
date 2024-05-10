@@ -72,15 +72,19 @@ Para executar o projeto em sua máquina local, siga os seguintes passos:
 
 ## Screenshots
 Tela inicial:
+
 ![image](https://github.com/gustavoakira-sw/Gemini_OCR_Notas_Fiscais_Alura_Google/assets/125785377/b32c2dbb-ec07-4e01-be67-0fdd8e7e1453)
 
 Nota fiscal já inserida:
+
 ![image](https://github.com/gustavoakira-sw/Gemini_OCR_Notas_Fiscais_Alura_Google/assets/125785377/df0d3c37-c6d9-4a2e-8a0c-de6f09a8d409)
 
 Documento sendo processado:
+
 ![image](https://github.com/gustavoakira-sw/Gemini_OCR_Notas_Fiscais_Alura_Google/assets/125785377/77deadee-e721-4985-96d1-8a029bd0ce93)
 
 Resultados fornecidos pelo modelo de IA:
+
 ![image](https://github.com/gustavoakira-sw/Gemini_OCR_Notas_Fiscais_Alura_Google/assets/125785377/0de4a1e1-350e-44ee-ab44-cc04121e3630)
 
 ## Autoria
