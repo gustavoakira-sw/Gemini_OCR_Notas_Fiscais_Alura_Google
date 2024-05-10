@@ -1,7 +1,6 @@
 from flask import Flask, render_template, request, jsonify, send_file
 from pathlib import Path
 import json
-import hashlib
 import google.generativeai as genai
 import PIL.Image
 import csv
@@ -46,22 +45,23 @@ def index():
 @app.route('/process', methods=['POST'])
 def process():
     if 'file' not in request.files:
-        return jsonify({'error': 'No file uploaded'})
+        return jsonify({'error': 'No file uploaded'}), 400
 
     file = request.files['file']
 
-    # Save the uploaded file
+    # Salvar o upload localmente
     file_path = Path('./uploads') / file.filename
     file.save(str(file_path))
 
-    # Generate content using the uploaded file
+    # GGerar conteúdo com base na imagem
     img = PIL.Image.open(file_path)
     response = model.generate_content([system_instruction, img])
 
-    # Process the response
+    # Parsear o JSON
     data = json.loads(response.text)
+    print(data)
 
-    # Generate CSV file
+    # Gerar arquivo CSV
     csv_file = Path('./static') / f'{file.filename.split(".")[0]}.csv'
     with open(csv_file, 'w', newline='') as csvfile:
         fieldnames = ['Item', 'Un', 'Val', 'Cat']
@@ -73,11 +73,5 @@ def process():
 
     return jsonify({'data': data, 'csv_file': str(csv_file)})
 
-@app.route('/download/<filename>')
-def download(filename):
-    csv_file = Path('./static') / filename
-    return send_file(csv_file, as_attachment=True)
-
 if __name__ == '__main__':
     app.run(debug=True)
-

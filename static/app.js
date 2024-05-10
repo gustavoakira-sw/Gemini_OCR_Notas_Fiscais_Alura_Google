@@ -6,10 +6,15 @@ new Vue({
         csvFileUrl: '',
         showResult: false,
         isLoading: false,
+        imageUrl: '',
+        items: []
     },
     methods: {
         handleFileUpload(event) {
             this.file = event.target.files[0];
+            if (this.file) {
+                this.imageUrl = URL.createObjectURL(this.file);
+            }
         },
         processRequest() {
             if (!this.file) {
@@ -28,10 +33,11 @@ new Vue({
             })
             .then(response => {
                 this.data = JSON.stringify(response.data.data, null, 2);
+                this.items = response.data.data;
                 this.csvFileUrl = response.data.csv_file;
                 this.showResult = true;
                 this.isLoading = false;
-            })
+            })            
             .catch(error => {
                 console.error('Erro:', error);
                 alert('Ocorreu um erro ao processar sua solicitação.');
@@ -40,4 +46,3 @@ new Vue({
         }
     }
 });
-

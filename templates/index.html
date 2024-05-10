@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Receipt Parser</title>
+    <title>Gemini - Assistente Financeiro</title>
     <!-- Bootstrap CSS -->
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
     <!-- Custom CSS -->
@@ -19,15 +19,29 @@
                         <label for="fileInput">Faça upload de uma imagem de um cupom fiscal ou recibo</label>
                         <input type="file" class="form-control-file" id="fileInput" @change="handleFileUpload">
                     </div>
+                    <!-- Exibir imagem -->
+                    <div v-if="imageUrl" class="image-container">
+                        <img :src="imageUrl" alt="Selected Image">
+                    </div>
+                    <!-- Roda de loading para evitar duplo submit -->
                     <button type="submit" class="btn btn-primary btn-block" :disabled="isLoading">
                         <span v-if="!isLoading">Processar</span>
                         <span v-else><span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span> Processando...</span>
                     </button>
                 </form>
+                <!-- Container de results -->
                 <div v-if="showResult" class="result-container">
                     <h2 class="text-center mb-4">Resultado</h2>
-                    <pre>{{ data }}</pre>
-                    <a :href="csvFileUrl" class="btn btn-success btn-block" download>Download CSV</a>
+                
+                    {% raw %}
+                    <ul class="list-group">
+                        <li class="list-group-item" v-for="item in items" :key="item.Item">
+                            <strong>{{ item.Cat }}:</strong> {{ item.Item }} - Unidades: {{ item.Un }}, Valor: R$ {{ parseFloat(item.Val).toFixed(2) }}
+                        </li>
+                    </ul>
+                    {% endraw %}
+                
+                    <a :href="csvFileUrl" class="btn btn-success btn-block" download>Baixar dados em CSV</a>
                 </div>
             </div>
         </div>
@@ -41,4 +55,3 @@
     <script src="{{ url_for('static', filename='app.js') }}"></script>
 </body>
 </html>
-
