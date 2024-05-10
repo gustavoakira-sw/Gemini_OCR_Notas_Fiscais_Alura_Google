@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Receipt Parser</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Custom CSS -->
+    <link href="{{ url_for('static', filename='styles.css') }}" rel="stylesheet">
+</head>
+<body>
+    <div id="app" class="container">
+        <div class="row justify-content-center">
+            <div class="col-md-8 col-lg-6 form-container">
+                <h1 class="text-center mb-4">Gemini - Assistente Financeiro</h1>
+                <form @submit.prevent="processRequest" enctype="multipart/form-data">
+                    <div class="form-group">
+                        <label for="fileInput">Faça upload de uma imagem de um cupom fiscal ou recibo</label>
+                        <input type="file" class="form-control-file" id="fileInput" @change="handleFileUpload">
+                    </div>
+                    <button type="submit" class="btn btn-primary btn-block" :disabled="isLoading">
+                        <span v-if="!isLoading">Processar</span>
+                        <span v-else><span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span> Processando...</span>
+                    </button>
+                </form>
+                <div v-if="showResult" class="result-container">
+                    <h2 class="text-center mb-4">Resultado</h2>
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th scope="col">Item</th>
+                                <th scope="col">Un</th>
+                                <th scope="col">Val</th>
+                                <th scope="col">Cat</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr v-for="(item, index) in data" :key="index">
+                                <td>{{ item.Item }}</td>
+                                <td>{{ item.Un }}</td>
+                                <td>{{ item.Val }}</td>
+                                <td>{{ item.Cat }}</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <a :href="csvFileUrl" class="btn btn-success btn-block" download>Download CSV</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Vue.js CDN -->
+    <script src="https://cdn.jsdelivr.net/npm/vue@2"></script>
+    <!-- Axios CDN -->
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <!-- Custom JavaScript -->
+    <script src="{{ url_for('static', filename='app.js') }}"></script>
+</body>
+</html>
+
