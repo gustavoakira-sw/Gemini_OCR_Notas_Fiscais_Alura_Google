@@ -1,4 +1,5 @@
 
+
 # Gemini AI - Assistente Financeiro
 
 Esta é uma aplicação web projetada para ajudar os usuários a extrair informações de cupons fiscais e recibos através das capacidades de visão computacional e output JSON do modelo Gemini 1.5 PRO, da Google.
@@ -87,6 +88,21 @@ Resultados fornecidos pelo modelo de IA:
 
 ![image](https://github.com/gustavoakira-sw/Gemini_OCR_Notas_Fiscais_Alura_Google/assets/125785377/0de4a1e1-350e-44ee-ab44-cc04121e3630)
 
+Dados em formato .CSV:
+```
+$ curl https://gustavoakira.tech/static/cf4.csv
+Item,Un,Val,Cat
+HIDRAT JOHNSONS SOFT,1,10.39,Higiene
+ESPONJA BRITE 3M,1,6.29,Limpeza
+CHOC KINDER OVO MENI,1,5.49,Alimentos
+CHOC LEITE MM SINGLE,1,1.99,Alimentos
+ESPONJA N RISCA S SC,1,6.99,Limpeza
+GOMA MASCAR TRIDENT,1,1.49,Alimentos
+GOMA MASCAR TRIDENT,1,1.49,Alimentos
+PANO M USO S-BRITE A,1,6.99,Limpeza
+```
+
 ## Autoria
 Desenvolvido por: Gustavo Akira Morita Gagliardi
 [Contato](mailto:gustavoakira.ti@gmail.com)
+
