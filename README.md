@@ -4,7 +4,7 @@
 
 Esta é uma aplicação web projetada para ajudar os usuários a extrair informações de cupons fiscais e recibos através das capacidades de visão computacional e output JSON do modelo Gemini 1.5 PRO, da Google.
 
-Demo do projeto disponível em: [https://gustavoakira.tech/](https://gustavoakira.tech/)
+Demo do projeto encerrada.
 
 ## Funcionalidades
 
